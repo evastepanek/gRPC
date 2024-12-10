@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+// Service Definition
+service ElectionService {
+  rpc GetElectionResults(ElectionData) returns (MessageResponse);
+}
+
+// Messages
+message ElectionData {
+  string regionID = 1;               // ID der Region
+  string electionRegion = 2;        // Name der Region
+}
+
+
+message MessageRequest {
+  string regionID = 1;              // Anfrage mit Region ID
+}
+
+message MessageResponse {
+  string responseData = 1;          // Antwort als String
+}
