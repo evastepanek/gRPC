@@ -1,0 +1,36 @@
+syntax = 'proto3';
+
+option java_package = "io.grpc.election";
+package election;
+
+service ElectionService {
+  rpc GetElectionResults(ElectionData) returns (MessageResponse);
+}
+
+message ElectionData {
+  string regionID = 1;
+  string electionRegion = 2;
+  //string timestamp = 3;  // Zeitstempel, falls benötigt als String
+  repeated Party partys = 4;  // Liste von Partys
+}
+
+message Party {
+  int32 partyID = 1;
+  string partyName = 2;
+  repeated Vorzugsstimmen vorzug = 3;  // Liste von Vorzugsstimmen
+  int32 votes = 4;  // Anzahl der Stimmen für diese Partei
+}
+
+message Vorzugsstimmen {
+  string vorzugName = 1;
+  int32 stimmenAnzahl = 2;
+  int32 listennummer = 3;
+}
+
+message MessageRequest{
+  string regionID = 1;
+}
+
+message MessageResponse {
+  string responseData = 1;
+}
